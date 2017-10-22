@@ -19,25 +19,24 @@ public class Problem3 {
 		boolean exit = true;
 		
 		while(exit) {
-		String letter = scan.nextLine();			// letter input 
-		
-		if (letter == "Q") {
+			String letter = scan.nextLine();			// letter input 
+			//System.out.println(letter);
+
+		if (letter.equals("Q")) {
 			exit = false;
+			break;
 		}
-			else if(letter == "T") {
-				System.out.println(transpose(matri,m,n,matri));
-				//System.out.println("did t");
-			}
-			else if(letter == "R") {
-				rowMax(matri,m,n);
-				System.out.println("did r");
-			}
-			else if(letter == "C") {
-				columnSum(n,matri);
-				System.out.println("did c");
-			}
-		
+		else if(letter.equals("T")) {
+			transpose(matri,m,n);
 		}
+		else if(letter.equals("R")) {
+			rowMax(matri,m,n);
+			}
+		else if(letter.equals("C")) {
+			columnSum(m,n,matri);
+			}
+		}
+		scan.close();
 	}
 	
 	/* get the user's Matrix */
@@ -48,7 +47,7 @@ public class Problem3 {
 				userArray[i][j] = newScan.nextInt();		
 			}
 		}
-		
+		newScan.close();
 		return userArray;
 	}
 	
@@ -63,41 +62,38 @@ public class Problem3 {
 	}
 	
 	/* Flip matrix */
-	public static int[][] transpose(int[][] transposedArray, int m, int n, int[][] userArray) {
+	public static void transpose(int[][] transposedArray, int m, int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				//userArray[i][j] = transposedArray[n][m];
-				transposedArray[i][j] = userArray [j][i];
-				}
+				System.out.print(transposedArray[j][i]+ " ");
 			}
-		System.out.print(transposedArray[n][m]);
-		return transposedArray;
-		
+			System.out.println();
+		}
 	}
 	
 	/* Find greatest value in each row */
-	public static int rowMax(int[][] userArray, int m, int n) {
+	public static void rowMax(int[][] userArray, int m, int n) {
 		int max = 0;
-		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
-				if(userArray[i][j] > max) {
-					max = userArray[i][j];
-					}
+		for (int j = 0; j < m; j++) {
+			for (int i = 0; i < n; i++) {
+				if(userArray[j][i] > max) {
+					max = userArray[j][i];
 				}
 			}
-		return max;
+			System.out.print(max + " ");
+		}
 	}
 	
 	/* Get sum of all columns */
 	//new matrix = transpose
-	
-	public static int columnSum(int colSum, int [][]userArray){
-		for(int i = 0; i < userArray.length; i++) {
-			colSum = 0;
-			for (int j = 0; j < userArray[i].length; j++) {
-				colSum += userArray[j][i];
+	public static void columnSum(int m, int n, int [][]userArray){
+		for(int j = 0; j < n; j++) {
+			int colSum = 0;
+			for (int i = 0; i < m; i++) {
+				colSum += userArray[i][j];
 			}
+			System.out.print(colSum + " ");
 		}
-		return colSum;
 	}
 }
