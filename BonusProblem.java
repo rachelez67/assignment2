@@ -1,10 +1,11 @@
 package assignment2;
-import java.util.Arrays;
+
 import java.util.Scanner;
 
 public class BonusProblem {
 	static int WIN = 4;
 	
+	/* My brain is sizzled and ran out of time*/
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		int m = scan.nextInt();							// m = rows 
@@ -12,7 +13,7 @@ public class BonusProblem {
 		int userBoard[][] = new int[m][n];
 		//int playerMove = scan.nextInt();
 		
-		/* Calling Methods */
+	/* Calling Methods */
 	printBoard(userBoard);
 	}
 	
@@ -26,8 +27,9 @@ public class BonusProblem {
 		}
 		return finalBoard;
 	}	
-
-	public static int playerTurn(int[][]matrixBoard, int player, int gameRows, int playerMove) {
+	/* Player turn */
+	public static int playerTurn(int[][]matrixBoard, int player, 
+								int gameRows, int playerMove) {
 		boolean moved = false;
 		gameRows -= 1;
 				
@@ -54,6 +56,7 @@ public class BonusProblem {
 		return player;
 	}
 	
+	/* Win conditions*/
 	public static boolean checkWin(int[][] matrixBoard, int player) {
 		
 		int [] winList = new int[4];
@@ -75,7 +78,6 @@ public class BonusProblem {
 					}
 				}
 			}
-		
 		}
 		return false;
 	}
